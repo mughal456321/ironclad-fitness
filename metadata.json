@@ -1,0 +1,6 @@
+{
+  "name": "IRONCLAD Elite Fitness",
+  "description": "High-end, premium fitness e-commerce brand selling extreme gear, custom apparel, and digital training programs built for hardcore athletes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
