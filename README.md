@@ -1,20 +1,109 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# 🏋️‍♂️ IRONCLAD Elite Fitness
 
-# Run and deploy your AI Studio app
+**"Pressure Creates Diamonds."**
 
-This contains everything you need to run your app locally.
+IRONCLAD Elite Fitness is a premium, high-intensity e-commerce platform and fitness ecosystem designed for athletes who demand uncompromising mechanical integrity and clinical-grade performance tools. This project features a tactical, industrial aesthetic combined with a robust full-stack architecture.
 
-View your app in AI Studio: https://ai.studio/apps/391e605b-1611-49b1-8df0-ce395b2ce4bc
+---
 
-## Run Locally
+## 🚀 Vision & Importance
 
-**Prerequisites:**  Node.js
+In an industry saturated with lifestyle brands, IRONCLAD stands as a technical alternative. We provide the raw assets—hardware, apparel, and metabolic fuel—required for elite performance. This platform serves as a central "Command Control" for athletes to acquire gear, track their progression, and unlock scientific training blueprints.
 
+### Why IRONCLAD?
+- **Industrial Reliability:** Every product is subjected to biochemical and mechanical load stress testing.
+- **Data-Driven Training:** Curriculums are validated by clinical telemetry, not just fitness trends.
+- **Elite Community:** Join "The Brotherhood"—a network of athletes dedicated to pushing cellular failure thresholds.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+---
+
+## ✨ Key Features
+
+- **🛒 Precision E-Commerce:** A custom-built catalog for high-tensile hardware (billet steel barbells), reinforced apparel (high-GSM garments), and bio-chemist certified supplements.
+- **📂 Digital Curriculums:** Instant access to downloadable training blueprints (Blueprints) validated by clinical telemetry.
+- **💎 Iron Points Loyalty System:** A gamified loyalty program where athletes earn "Iron Points" for every purchase, redeemable for exclusive digital content.
+- **📊 Athlete Control Panel:** A centralized dossier for order tracking, membership status (Recruit to Obsidian Elite), and curriculum management.
+- **🛡️ Tactical UI/UX:** An immersive, high-contrast visual design using a "Vantablack" and "Neon Orange" palette, featuring industrial scanlines and real-time telemetry simulations.
+- **⚡ Live Telemetry:** Dynamic indicators showing active community members and global performance metrics (Tonnage moved, Blueprints unlocked).
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- **Framework:** React 19 (TypeScript)
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS 4 (Custom Industrial Theme)
+- **Animations:** Motion (Framer Motion)
+- **Icons:** Lucide React
+
+### Backend
+- **Server:** Node.js / Express
+- **Database:** SQLite (Via `sqlite3` and `sqlite` wrapper)
+- **Tooling:** tsx (TypeScript execution)
+
+---
+
+## 📦 Project Structure
+
+```text
+ironclad-elite-fitness/
+├── backend/            # Express server & SQLite database logic
+│   ├── db.ts           # Database initialization & seeding
+│   ├── ironclad.db     # SQLite Database file
+│   └── index.ts        # API Endpoints (Products, Programs, Users, Orders)
+├── frontend/           # React application
+│   ├── src/
+│   │   ├── components/ # Tactical UI Modules (Hero, ProShop, Curriculum, Dashboard)
+│   │   ├── context/    # Global State Management (AppContext)
+│   │   ├── types.ts    # TypeScript Type Definitions
+│   │   └── data.ts     # Static Product & Athlete Data
+└── package.json        # Monorepo configuration & concurrently scripts
+```
+
+---
+
+## ⚙️ Local Installation & Deployment
+
+**Prerequisites:** Node.js (v18+)
+
+1.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/mughal456321/ironclad-fitness.git
+    cd ironclad-fitness
+    ```
+
+2.  **Install Dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Environment Setup:**
+    - Create a `.env` file in the root.
+    - Set your `GEMINI_API_KEY` for AI-integrated features.
+    ```env
+    GEMINI_API_KEY="YOUR_API_KEY"
+    ```
+
+4.  **Launch Tactical Systems:**
+    ```bash
+    npm start
+    ```
+    - **Frontend Interface:** [http://localhost:3000](http://localhost:3000)
+    - **Backend Command:** [http://localhost:5000](http://localhost:5000)
+
+---
+
+## 📡 API Reference
+
+- `GET /api/products`: Retrieve the full tactical equipment catalog.
+- `GET /api/programs`: Fetch available training curriculums.
+- `GET /api/user`: Access current athlete dossier and unlocked assets.
+- `POST /api/orders`: Process new equipment acquisitions and logistics.
+- `POST /api/user/claim-program`: Redeem Iron Points for digital blueprints.
+
+---
+
+## ⚖️ License & Compliance
+© 2026 IRONCLAD ELITE SYSTEM INC. ALL TACTICAL RIGHTS SECURED.
+STRIKE-FORCE SHIELD VERIFIED v4.51
