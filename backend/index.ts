@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import bcrypt from 'bcryptjs';
+import { OAuth2Client } from 'google-auth-library';
 import { initDb, seedDb } from './db';
 
 const app = express();
@@ -8,9 +10,170 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+const googleClient = process.env.GOOGLE_CLIENT_ID
+  ? new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
+  : null;
+
 async function startServer() {
   const db = await initDb();
   await seedDb(db);
+
+  // ==================== AUTH ROUTES ====================
+
+  // POST Register
+  app.post('/api/auth/register', async (req, res) => {
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: 'Name, email, and password required' });
+    }
+
+    try {
+      const existing = await db.get('SELECT email FROM users WHERE email = ?', [email]);
+      if (existing) {
+        return res.status(409).json({ error: 'Email already registered' });
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+      await db.run('INSERT INTO users (email, name, password, ironPoints) VALUES (?, ?, ?, 0)',
+        [email, name, hashedPassword]);
+
+      const user = await db.get('SELECT email, name, ironPoints FROM users WHERE email = ?', [email]);
+      res.json({ ...user, unlockedPrograms: [], orders: [] });
+    } catch (error) {
+      console.error('Register error:', error);
+      res.status(500).json({ error: 'Registration failed' });
+    }
+  });
+
+  // POST Login
+  app.post('/api/auth/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Email and password required' });
+    }
+
+    try {
+      const user = await db.get('SELECT * FROM users WHERE email = ?', [email]);
+      if (!user) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+
+      if (!user.password) {
+        return res.status(401).json({ error: 'This account uses Google Sign-In' });
+      }
+
+      const valid = await bcrypt.compare(password, user.password);
+      if (!valid) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+
+      const unlocked = await db.all('SELECT programId FROM unlocked_programs WHERE userEmail = ?', [email]);
+      const orders = await db.all('SELECT * FROM orders WHERE userEmail = ? ORDER BY date DESC', [email]);
+      for (const order of orders) {
+        const items = await db.all('SELECT * FROM order_items WHERE orderId = ?', [order.id]);
+        order.items = items;
+      }
+
+      res.json({
+        email: user.email,
+        name: user.name,
+        ironPoints: user.ironPoints,
+        unlockedPrograms: unlocked.map((u: any) => u.programId),
+        orders
+      });
+    } catch (error) {
+      console.error('Login error:', error);
+      res.status(500).json({ error: 'Login failed' });
+    }
+  });
+
+  // POST Google Sign-In
+  app.post('/api/auth/google', async (req, res) => {
+    const { credential } = req.body;
+    if (!credential) {
+      return res.status(400).json({ error: 'Google credential required' });
+    }
+    if (!googleClient) {
+      return res.status(501).json({ error: 'Google Sign-In not configured. Set GOOGLE_CLIENT_ID in .env' });
+    }
+
+    try {
+      const ticket = await googleClient.verifyIdToken({
+        idToken: credential,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      });
+      const payload = ticket.getPayload();
+      if (!payload || !payload.email) {
+        return res.status(401).json({ error: 'Invalid Google token' });
+      }
+
+      const email = payload.email;
+      const name = payload.name || email.split('@')[0].toUpperCase();
+
+      let user = await db.get('SELECT * FROM users WHERE email = ?', [email]);
+      if (!user) {
+        await db.run('INSERT INTO users (email, name, googleId, ironPoints) VALUES (?, ?, ?, 0)',
+          [email, name, payload.sub]);
+      } else if (!user.googleId) {
+        await db.run('UPDATE users SET googleId = ? WHERE email = ?', [payload.sub, email]);
+      }
+
+      const unlocked = await db.all('SELECT programId FROM unlocked_programs WHERE userEmail = ?', [email]);
+      const orders = await db.all('SELECT * FROM orders WHERE userEmail = ? ORDER BY date DESC', [email]);
+      for (const order of orders) {
+        const items = await db.all('SELECT * FROM order_items WHERE orderId = ?', [order.id]);
+        order.items = items;
+      }
+
+      res.json({
+        email: user?.email || email,
+        name: user?.name || name,
+        ironPoints: user?.ironPoints || 0,
+        unlockedPrograms: unlocked.map((u: any) => u.programId),
+        orders
+      });
+    } catch (error) {
+      console.error('Google auth error:', error);
+      res.status(401).json({ error: 'Google authentication failed' });
+    }
+  });
+
+  // POST Restore Session (by email from localStorage)
+  app.post('/api/auth/session', async (req, res) => {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ error: 'Email required' });
+    }
+
+    try {
+      const user = await db.get('SELECT * FROM users WHERE email = ?', [email]);
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+
+      const unlocked = await db.all('SELECT programId FROM unlocked_programs WHERE userEmail = ?', [email]);
+      const orders = await db.all('SELECT * FROM orders WHERE userEmail = ? ORDER BY date DESC', [email]);
+      for (const order of orders) {
+        const items = await db.all('SELECT * FROM order_items WHERE orderId = ?', [order.id]);
+        order.items = items;
+      }
+
+      res.json({
+        email: user.email,
+        name: user.name,
+        ironPoints: user.ironPoints,
+        unlockedPrograms: unlocked.map((u: any) => u.programId),
+        orders
+      });
+    } catch (error) {
+      console.error('Session restore error:', error);
+      res.status(500).json({ error: 'Failed to restore session' });
+    }
+  });
+
+  // ==================== DATA ROUTES ====================
 
   // GET Products
   app.get('/api/products', async (req, res) => {
@@ -39,20 +202,19 @@ async function startServer() {
     res.json(parsedPrograms);
   });
 
-  // GET User Data (Default user)
+  // GET User Data (by email query param)
   app.get('/api/user', async (req, res) => {
-    const email = 'garrison.shroud@ironclad-elite.com';
+    const email = req.query.email as string;
+    if (!email) {
+      return res.status(400).json({ error: 'Email query param required' });
+    }
     const user = await db.get('SELECT * FROM users WHERE email = ?', [email]);
     
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Get Unlocked Programs
     const unlocked = await db.all('SELECT programId FROM unlocked_programs WHERE userEmail = ?', [email]);
-    const unlockedPrograms = unlocked.map(u => u.programId);
-
-    // Get Orders
     const orders = await db.all('SELECT * FROM orders WHERE userEmail = ? ORDER BY date DESC', [email]);
     for (const order of orders) {
       const items = await db.all('SELECT * FROM order_items WHERE orderId = ?', [order.id]);
@@ -60,8 +222,10 @@ async function startServer() {
     }
 
     res.json({
-      ...user,
-      unlockedPrograms,
+      email: user.email,
+      name: user.name,
+      ironPoints: user.ironPoints,
+      unlockedPrograms: unlocked.map(u => u.programId),
       orders
     });
   });

@@ -7,6 +7,7 @@ import Curriculum from './components/Curriculum';
 import EliteAdvisory from './components/EliteAdvisory';
 import TheBrotherhood from './components/TheBrotherhood';
 import JoinBrotherhood from './components/JoinBrotherhood';
+import AuthScreen from './components/AuthScreen';
 import Toast from './components/Toast';
 import MiniCart from './components/MiniCart';
 import UserDashboard from './components/UserDashboard';
@@ -23,11 +24,11 @@ export default function App() {
     );
   }
 
-  if (error || !user) {
+  if (error) {
     return (
       <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center font-mono text-white text-xs tracking-widest uppercase p-4 text-center">
-        <div className="text-neon-orange mb-4 text-2xl font-black">{error ? 'SYSTEM ERROR' : 'CRITICAL SYSTEM ERROR'}</div>
-        <p className="max-w-md">{error || 'The secure database link has been severed. Check backend terminal status.'}</p>
+        <div className="text-neon-orange mb-4 text-2xl font-black">SYSTEM ERROR</div>
+        <p className="max-w-md">{error}</p>
         <button 
           onClick={() => window.location.reload()}
           className="mt-6 border border-[#444] px-6 py-2 hover:bg-white hover:text-black duration-150"
@@ -38,6 +39,9 @@ export default function App() {
     );
   }
 
+  if (!user) {
+    return <AuthScreen />;
+  }
 
   return (
     <div className="relative min-h-screen bg-[#050505] concrete-texture text-[#E0E0E0] font-sans flex flex-col justify-between border-0 md:border-[16px] border-[#121212] overflow-hidden">

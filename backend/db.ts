@@ -47,6 +47,8 @@ export async function initDb(): Promise<Database> {
     CREATE TABLE IF NOT EXISTS users (
       email TEXT PRIMARY KEY,
       name TEXT NOT NULL,
+      password TEXT,
+      googleId TEXT,
       ironPoints INTEGER NOT NULL DEFAULT 0
     );
 
@@ -343,16 +345,20 @@ export async function seedDb(db: Database) {
 
   const userCount = await db.get('SELECT COUNT(*) as count FROM users');
   if (userCount.count === 0) {
+    const bcryptjs = await import('bcryptjs');
+    const hashedPassword = await bcryptjs.hash('ironclad123', 10);
+
     const defaultUser = {
       email: 'garrison.shroud@ironclad-elite.com',
       name: 'GARRISON SHROUD',
+      password: hashedPassword,
       ironPoints: 850
     };
 
     await db.run(`
-      INSERT INTO users (email, name, ironPoints)
-      VALUES (?, ?, ?)
-    `, [defaultUser.email, defaultUser.name, defaultUser.ironPoints]);
+      INSERT INTO users (email, name, password, ironPoints)
+      VALUES (?, ?, ?, ?)
+    `, [defaultUser.email, defaultUser.name, defaultUser.password, defaultUser.ironPoints]);
 
     // Seed Unlocked Programs
     await db.run(`

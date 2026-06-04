@@ -21,6 +21,7 @@ interface AppContextType {
   checkoutStep: 'idle' | 'billing' | 'review' | 'confirmed';
   liveCounter: number;
   loading: boolean;
+  authLoading: boolean;
   error: string | null;
   lastOrderId: string | null;
   toast: ToastData | null;
@@ -39,6 +40,10 @@ interface AppContextType {
   placeOrder: (shippingDetails: { name: string; street: string; city: string; zip: string; cardNum: string }) => void;
   claimDigitalBlueprint: (programId: string) => void;
   updateUserProfile: (name: string, email: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
+  register: (name: string, email: string, password: string) => Promise<void>;
+  googleLogin: (credential: string) => Promise<void>;
+  logout: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -47,6 +52,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [products, setProducts] = useState<Product[]>([]);
   const [programs, setPrograms] = useState<DigitalProgram[]>([]);
   const [loading, setLoading] = useState(true);
+  const [authLoading, setAuthLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Read local storage or fallback
@@ -85,27 +91,40 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [liveCounter, setLiveCounter] = useState<number>(1482);
   const [lastOrderId, setLastOrderId] = useState<string | null>(null);
 
-  // Fetch initial data from API
+  // Fetch initial data + try restore session
   useEffect(() => {
     async function fetchData() {
       try {
-        const [prodRes, progRes, userRes] = await Promise.all([
+        const [prodRes, progRes] = await Promise.all([
           fetch('/api/products'),
-          fetch('/api/programs'),
-          fetch('/api/user')
+          fetch('/api/programs')
         ]);
 
-        if (!prodRes.ok || !progRes.ok || !userRes.ok) {
+        if (!prodRes.ok || !progRes.ok) {
           throw new Error('SYSTEM TERMINAL FAILURE: Database unreachable.');
         }
 
         const productsData = await prodRes.json();
         const programsData = await progRes.json();
-        const userData = await userRes.json();
 
         setProducts(productsData);
         setPrograms(programsData);
-        setUser(userData);
+
+        // Try restore session from localStorage
+        const savedEmail = localStorage.getItem('ironclad_email');
+        if (savedEmail) {
+          const sessionRes = await fetch('/api/auth/session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: savedEmail })
+          });
+          if (sessionRes.ok) {
+            const userData = await sessionRes.json();
+            setUser(userData);
+          } else {
+            localStorage.removeItem('ironclad_email');
+          }
+        }
       } catch (err) {
         console.error('Failed to fetch data from API:', err);
         setError('SYSTEM TERMINAL FAILURE: Database unreachable. Verify backend signal.');
@@ -307,7 +326,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const updateUserProfile = async (name: string, email: string) => {
     const currentEmail = user?.email;
-    // Optimistic local update
     setUser(prev => prev ? { ...prev, name, email } : prev);
     try {
       const res = await fetch('/api/user/update', {
@@ -322,6 +340,88 @@ export function AppProvider({ children }: { children: ReactNode }) {
     } catch (error) {
       console.error('Backend profile update skipped:', error);
     }
+  };
+
+  // ==================== AUTH METHODS ====================
+
+  const login = async (email: string, password: string) => {
+    setAuthLoading(true);
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Login failed');
+      }
+      const userData = await res.json();
+      setUser(userData);
+      localStorage.setItem('ironclad_email', email);
+      setJoinModalOpen(true);
+    } catch (err: any) {
+      showToast(err.message || 'Login failed', 'error');
+      throw err;
+    } finally {
+      setAuthLoading(false);
+    }
+  };
+
+  const register = async (name: string, email: string, password: string) => {
+    setAuthLoading(true);
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Registration failed');
+      }
+      const userData = await res.json();
+      setUser(userData);
+      localStorage.setItem('ironclad_email', email);
+      setJoinModalOpen(true);
+    } catch (err: any) {
+      showToast(err.message || 'Registration failed', 'error');
+      throw err;
+    } finally {
+      setAuthLoading(false);
+    }
+  };
+
+  const googleLogin = async (credential: string) => {
+    setAuthLoading(true);
+    try {
+      const res = await fetch('/api/auth/google', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ credential })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Google Sign-In failed');
+      }
+      const userData = await res.json();
+      setUser(userData);
+      localStorage.setItem('ironclad_email', userData.email);
+      setJoinModalOpen(true);
+    } catch (err: any) {
+      showToast(err.message || 'Google Sign-In failed', 'error');
+      throw err;
+    } finally {
+      setAuthLoading(false);
+    }
+  };
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('ironclad_email');
+    setJoinModalOpen(false);
+    setDashboardOpen(false);
+    setCheckoutStep('idle');
   };
 
   return (
@@ -340,6 +440,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       checkoutStep,
       liveCounter,
       loading,
+      authLoading,
       error,
       lastOrderId,
       toast,
@@ -357,7 +458,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setCheckoutStep,
       placeOrder,
       claimDigitalBlueprint,
-      updateUserProfile
+      updateUserProfile,
+      login,
+      register,
+      googleLogin,
+      logout
     }}>
       {children}
     </AppContext.Provider>

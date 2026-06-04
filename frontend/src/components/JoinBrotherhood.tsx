@@ -128,6 +128,16 @@ export default function JoinBrotherhood() {
                   <ChevronRight className="h-4 w-4" />
                 </button>
 
+                {/* Skip */}
+                <div className="mt-3 text-center">
+                  <button
+                    onClick={handleClose}
+                    className="font-mono text-[9px] text-zinc-600 hover:text-zinc-400 tracking-wider underline underline-offset-2 cursor-pointer transition-colors duration-150"
+                  >
+                    NO THANKS, SKIP TO SITE
+                  </button>
+                </div>
+
                 <p className="mt-3 text-center font-mono text-[8px] text-zinc-600 tracking-wider">
                   BY PROCEEDING YOU AGREE TO THE IRONCLAD TERMS OF USE AND PRIVACY PROTOCOL
                 </p>
