@@ -24,6 +24,7 @@ In an industry saturated with lifestyle brands, IRONCLAD stands as a technical a
 - **💎 Iron Points Loyalty System:** A gamified loyalty program where athletes earn "Iron Points" for every purchase, redeemable for exclusive digital content.
 - **📊 Athlete Control Panel:** A centralized dossier for order tracking, membership status (Recruit to Obsidian Elite), and curriculum management.
 - **🛡️ Tactical UI/UX:** An immersive, high-contrast visual design using a "Vantablack" and "Neon Orange" palette, featuring industrial scanlines and real-time telemetry simulations.
+- **🔐 Secure Authentication Terminal:** A robust multi-modal authentication system supporting standard Email/Password registration and Google OAuth 2.0 Sign-In.
 - **⚡ Live Telemetry:** Dynamic indicators showing active community members and global performance metrics (Tonnage moved, Blueprints unlocked).
 
 ---
@@ -41,6 +42,7 @@ In an industry saturated with lifestyle brands, IRONCLAD stands as a technical a
 - **Server:** Node.js / Express
 - **Database:** SQLite (Via `sqlite3` and `sqlite` wrapper)
 - **Tooling:** tsx (TypeScript execution)
+- **Security:** bcryptjs (Password hashing) & google-auth-library (OAuth 2.0)
 
 ---
 
@@ -51,10 +53,10 @@ ironclad-elite-fitness/
 ├── backend/            # Express server & SQLite database logic
 │   ├── db.ts           # Database initialization & seeding
 │   ├── ironclad.db     # SQLite Database file
-│   └── index.ts        # API Endpoints (Products, Programs, Users, Orders)
+│   └── index.ts        # API Endpoints (Auth, Products, Programs, Users, Orders)
 ├── frontend/           # React application
 │   ├── src/
-│   │   ├── components/ # Tactical UI Modules (Hero, ProShop, Curriculum, Dashboard)
+│   │   ├── components/ # Tactical UI Modules (Auth, Hero, ProShop, Curriculum, Dashboard)
 │   │   ├── context/    # Global State Management (AppContext)
 │   │   ├── types.ts    # TypeScript Type Definitions
 │   │   └── data.ts     # Static Product & Athlete Data
@@ -79,10 +81,12 @@ ironclad-elite-fitness/
     ```
 
 3.  **Environment Setup:**
-    - Create a `.env` file in the root.
+    - Create a `.env` file in the root and `frontend/.env`.
     - Set your `GEMINI_API_KEY` for AI-integrated features.
+    - Set `GOOGLE_CLIENT_ID` (backend) and `VITE_GOOGLE_CLIENT_ID` (frontend) for Google Sign-In.
     ```env
     GEMINI_API_KEY="YOUR_API_KEY"
+    GOOGLE_CLIENT_ID="YOUR_GOOGLE_CLIENT_ID"
     ```
 
 4.  **Launch Tactical Systems:**
@@ -96,6 +100,13 @@ ironclad-elite-fitness/
 
 ## 📡 API Reference
 
+### Authentication
+- `POST /api/auth/register`: Initialize a new operator profile.
+- `POST /api/auth/login`: Authenticate and access the command panel.
+- `POST /api/auth/google`: Secure Google Sign-In synchronization.
+- `POST /api/auth/session`: Restore previous tactical sessions.
+
+### Data & Logistics
 - `GET /api/products`: Retrieve the full tactical equipment catalog.
 - `GET /api/programs`: Fetch available training curriculums.
 - `GET /api/user`: Access current athlete dossier and unlocked assets.
