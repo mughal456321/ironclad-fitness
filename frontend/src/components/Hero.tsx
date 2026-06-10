@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Activity, ShieldCheck, Flame, Trophy } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import ImageWithFallback from './ImageWithFallback';
 
 export default function Hero() {
   const { liveCounter, setCartOpen, setJoinModalOpen } = useApp();
@@ -16,10 +17,11 @@ export default function Hero() {
       
       {/* Background Graphic Grid of Heavy Concrete texture & Athletic Silhouette */}
       <div className="absolute inset-0 z-0 opacity-45">
-        <img 
-          src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2000&auto=format&fit=crop" 
-          alt="Athlete Gritty" 
+        <ImageWithFallback
+          src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2000&auto=format&fit=crop"
+          alt="Athlete Gritty"
           className="w-full h-full object-cover contrast-110 brightness-75"
+          wrapperClassName="absolute inset-0"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-[#050505]" />

@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, ShoppingCart, Star, Filter, Heart, AlertTriangle, Check } from 'lucide-react';
 import { useApp } from '../context/AppContext';
-import { PRODUCTS } from '../data';
 import { Product } from '../types';
+import ImageWithFallback from './ImageWithFallback';
 
-export default function ProShop() {
+export default function ProShop({ allProducts }: { allProducts?: Product[] }) {
   const { 
-    products,
+    products: contextProducts,
     activeGoalFilter, 
     activeTypeFilter, 
     searchQuery, 
@@ -16,6 +16,8 @@ export default function ProShop() {
     setSearchQuery, 
     addToCart 
   } = useApp();
+
+  const products = allProducts || contextProducts;
 
   // For the quick item inspection modal or cards
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -215,11 +217,11 @@ export default function ProShop() {
 
                   {/* Image Canvas with gritty hover zoom option */}
                   <div className="relative aspect-square w-full bg-neutral-900 overflow-hidden cursor-pointer" onClick={() => setSelectedProduct(prod)}>
-                    <img 
+                    <ImageWithFallback
                       src={prod.image}
                       alt={prod.name}
-                      loading="lazy"
                       className="h-full w-full object-cover group-hover:scale-105 duration-300"
+                      wrapperClassName="absolute inset-0"
                     />
                     {/* Quick View Cover Overlay */}
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 duration-150 flex flex-col items-center justify-center p-4">
@@ -406,10 +408,11 @@ export default function ProShop() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                 <div>
-                  <img 
-                    src={selectedProduct.image} 
+                  <ImageWithFallback
+                    src={selectedProduct.image}
                     alt={selectedProduct.name}
-                    className="w-full object-cover aspect-square border border-neutral-800 transition-all duration-300"
+                    className="w-full object-cover aspect-square transition-all duration-300"
+                    wrapperClassName="border border-neutral-800"
                   />
                   
                   <div className="grid grid-cols-2 gap-2 mt-2">

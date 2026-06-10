@@ -1,11 +1,14 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import { Award, Star, ShoppingCart, ShieldAlert } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { ATHLETES, PRODUCTS } from '../data';
+import ImageWithFallback from './ImageWithFallback';
 
 export default function EliteAdvisory() {
   const { addToCart, products } = useApp();
+  const navigate = useNavigate();
 
   const handleBuyEndorsedItem = (productId: string) => {
     const matched = PRODUCTS.find(p => p.id === productId);
@@ -47,16 +50,17 @@ export default function EliteAdvisory() {
             return (
               <div 
                 key={ath.id}
-                className="bg-[#121212] border border-[#222] p-6 flex flex-col justify-between hover:border-[#FF5500] transition-all duration-150"
+                onClick={() => navigate(`/adviser/${ath.id}`)}
+                className="bg-[#121212] border border-[#222] p-6 flex flex-col justify-between hover:border-[#FF5500] transition-all duration-150 cursor-pointer"
               >
                 <div>
                   {/* Photo of Athlete - High Contrast B&W Gritty */}
                   <div className="group relative h-64 w-full bg-neutral-900 overflow-hidden mb-6 border border-neutral-800">
-                    <img 
-                      src={ath.image} 
+                    <ImageWithFallback
+                      src={ath.image}
                       alt={ath.name}
-                      loading="lazy"
                       className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
+                      wrapperClassName="absolute inset-0"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                     
@@ -102,10 +106,11 @@ export default function EliteAdvisory() {
                           className="flex items-center justify-between p-2 bg-[#050505] hover:bg-[#121212] transition-colors border border-[#222] leading-tight"
                         >
                           <div className="flex items-center space-x-2">
-                            <img 
-                              src={matItem.image} 
-                              alt={matItem.name} 
+                            <ImageWithFallback
+                              src={matItem.image}
+                              alt={matItem.name}
                               className="h-8 w-8 object-cover"
+                              wrapperClassName="h-8 w-8 shrink-0"
                             />
                             <div className="text-left font-mono">
                               <span className="block text-[9px] text-white font-extrabold max-w-[150px] truncate uppercase">
@@ -117,7 +122,7 @@ export default function EliteAdvisory() {
 
                           <button
                             type="button"
-                            onClick={() => handleBuyEndorsedItem(pId)}
+                            onClick={(e) => { e.stopPropagation(); handleBuyEndorsedItem(pId); }}
                             className="bg-neon-orange hover:bg-orange-600 p-2 text-black text-[9px] font-mono uppercase font-black tracking-widest outline-none transition-all duration-150 rounded-none flex items-center space-x-1"
                             title="Add Approved Gear to Cart"
                           >

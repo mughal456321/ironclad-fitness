@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ShoppingBag, User, Activity, Menu, X } from 'lucide-react';
+import { ShoppingBag, User, Activity, Menu, X, Package } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 
 export default function Header() {
   const { cart, user, liveCounter, setCartOpen } = useApp();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   // Calculate cart totals
@@ -15,9 +18,13 @@ export default function Header() {
   }, 0);
 
   const handleScrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname === '/') {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate(`/#${id}`);
     }
   };
 
@@ -28,8 +35,14 @@ export default function Header() {
         {/* Brand Logo */}
         <button 
           type="button"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex items-center space-x-2 focus:outline-none text-left shrink-0"
+          onClick={() => {
+            if (location.pathname === '/') {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+              navigate('/');
+            }
+          }}
+          className="flex items-center space-x-2 focus:outline-none text-left shrink-0 cursor-pointer"
         >
           <div className="w-8 h-8 bg-[#FF5500] flex items-center justify-center font-black italic text-black text-xl leading-none">
             I
@@ -45,7 +58,7 @@ export default function Header() {
         {/* Navigation - centered */}
         <nav className="hidden md:flex items-center justify-center flex-1 px-6 space-x-10">
           <button 
-            onClick={() => handleScrollTo('pro-shop')} 
+            onClick={() => navigate('/pro-shop')} 
             className="text-[11px] font-bold tracking-[0.15em] uppercase text-zinc-400 hover:text-white border-b-2 border-transparent hover:border-[#FF5500] pb-1 transition-all duration-150 cursor-pointer"
           >
             Pro-Shop
@@ -95,10 +108,7 @@ export default function Header() {
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => {
-              const el = document.getElementById('user-dashboard');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={() => navigate('/dashboard')}
             className="flex items-center space-x-2 border border-[#333] bg-[#121212] px-3 py-1.5 focus:outline-none hover:border-zinc-500 duration-150"
           >
             <User className="h-3.5 w-3.5 text-neon-orange shrink-0" />
@@ -106,6 +116,17 @@ export default function Header() {
               <div className="text-zinc-400 font-bold truncate max-w-[90px]">{user?.name || 'LOGGING IN...'}</div>
               <div className="text-white font-bold"><span className="text-[#FF5500]">{user?.ironPoints || 0}</span> PTS</div>
             </div>
+          </motion.button>
+
+          {/* Orders */}
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => navigate('/orders')}
+            className="hidden sm:flex items-center space-x-1.5 border border-[#333] bg-[#121212] px-3 py-1.5 focus:outline-none hover:border-zinc-500 duration-150"
+          >
+            <Package className="h-3.5 w-3.5 text-zinc-400 shrink-0" />
+            <span className="font-mono text-[9px] font-bold text-zinc-400 tracking-widest uppercase">Orders</span>
           </motion.button>
 
           {/* Cart */}
@@ -149,8 +170,16 @@ export default function Header() {
             className="md:hidden overflow-hidden border-t border-[#222] bg-[#0c0c0c]"
           >
             <div className="flex flex-col px-4 py-3 space-y-2">
+              <button
+                onClick={() => {
+                  navigate('/pro-shop');
+                  setMobileOpen(false);
+                }}
+                className="text-left text-sm font-bold tracking-widest uppercase text-zinc-400 hover:text-white border-b border-[#222] py-2.5 transition-colors duration-150 cursor-pointer"
+              >
+                Pro-Shop
+              </button>
               {[
-                { label: 'Pro-Shop', id: 'pro-shop' },
                 { label: 'Blueprints', id: 'curriculum' },
                 { label: 'Advisers', id: 'advisory' },
                 { label: 'Brotherhood', id: 'brotherhood' }
@@ -166,6 +195,27 @@ export default function Header() {
                   {link.label}
                 </button>
               ))}
+              <div className="border-t border-[#333] pt-2 mt-1">
+                <span className="text-[8px] font-mono text-zinc-600 font-bold tracking-widest block px-1 mb-1 uppercase">Account</span>
+                <button
+                  onClick={() => {
+                    navigate('/dashboard');
+                    setMobileOpen(false);
+                  }}
+                  className="text-left text-sm font-bold tracking-widest uppercase text-zinc-400 hover:text-white border-b border-[#222] py-2.5 transition-colors duration-150 cursor-pointer"
+                >
+                  Dashboard
+                </button>
+                <button
+                  onClick={() => {
+                    navigate('/orders');
+                    setMobileOpen(false);
+                  }}
+                  className="text-left text-sm font-bold tracking-widest uppercase text-zinc-400 hover:text-white border-b border-[#222] py-2.5 transition-colors duration-150 cursor-pointer"
+                >
+                  Orders
+                </button>
+              </div>
             </div>
           </motion.div>
         )}

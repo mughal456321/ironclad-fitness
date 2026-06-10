@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Award, FileText, ChevronRight, Download, Truck, Check, Grid, Sparkles, BookOpen, Clock, Activity, FileCheck } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import ImageWithFallback from './ImageWithFallback';
 
 
 export default function UserDashboard() {
@@ -290,10 +291,11 @@ export default function UserDashboard() {
                         <div className="flex-1 space-y-1.5">
                           {ord.items.map((item, idc) => (
                             <div key={idc} className="flex items-center space-x-2">
-                              <img 
-                                src={item.image} 
-                                alt={item.name} 
-                                className="h-6 w-6 object-cover border border-[#222]" 
+                              <ImageWithFallback
+                                src={item.image}
+                                alt={item.name}
+                                className="h-6 w-6 object-cover"
+                                wrapperClassName="h-6 w-6 shrink-0 border border-[#222]"
                               />
                               <span className="text-[10px] text-zinc-200">
                                 {item.quantity}x <strong className="text-white uppercase font-bold">{item.name}</strong>

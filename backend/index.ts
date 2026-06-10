@@ -2,7 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import bcrypt from 'bcryptjs';
 import { OAuth2Client } from 'google-auth-library';
+import dotenv from 'dotenv';
+import path from 'path';
 import { initDb, seedDb } from './db';
+
+dotenv.config({ path: path.resolve(process.cwd(), 'backend', '.env') });
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -247,6 +251,10 @@ async function startServer() {
           INSERT INTO order_items (orderId, name, price, quantity, image, type)
           VALUES (?, ?, ?, ?, ?, ?)
         `, [order.id, item.name, item.price, item.quantity, item.image, item.type]);
+        // Decrement stock for physical items
+        if (item.type === 'physical' && item.productId) {
+          await db.run('UPDATE products SET stockCount = MAX(0, stockCount - ?) WHERE id = ?', [item.quantity, item.productId]);
+        }
       }
 
       // 3. Update User Points
@@ -269,21 +277,17 @@ async function startServer() {
 
   // POST Update User Profile (or create new user on activation)
   app.post('/api/user/update', async (req, res) => {
-    const { name, email } = req.body;
+    const { currentEmail, name, email } = req.body;
 
     try {
-      const existingUser = await db.get('SELECT * FROM users WHERE email = ?', [email]);
+      const existingUser = await db.get('SELECT * FROM users WHERE email = ?', [currentEmail || email]);
 
       if (!existingUser) {
         // New user activation — insert fresh record with 0 points
         await db.run('INSERT INTO users (email, name, ironPoints) VALUES (?, ?, 0)', [email, name]);
       } else {
-        // Reactivation — reset points to 0 for fresh start
-        await db.run('UPDATE users SET name = ?, ironPoints = 0 WHERE email = ?', [name, email]);
-        // Clear prior orders and unlocked programs
-        await db.run('DELETE FROM order_items WHERE orderId IN (SELECT id FROM orders WHERE userEmail = ?)', [email]);
-        await db.run('DELETE FROM orders WHERE userEmail = ?', [email]);
-        await db.run('DELETE FROM unlocked_programs WHERE userEmail = ?', [email]);
+        // Update name and email, preserve points
+        await db.run('UPDATE users SET name = ?, email = ? WHERE email = ?', [name, email, currentEmail || email]);
       }
 
       // Return updated/new user
@@ -301,7 +305,7 @@ async function startServer() {
 
       res.json({
         ...updatedUser,
-        unlockedPrograms: unlocked.map(u => u.programId),
+        unlockedPrograms: unlocked.map((u: any) => u.programId),
         orders
       });
     } catch (error) {

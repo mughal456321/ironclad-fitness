@@ -20,6 +20,7 @@ export interface Product {
   weights?: string[];
   colors?: string[];
   features: string[];
+  isOriginal?: boolean;
 }
 
 export interface DigitalProgram {
@@ -70,10 +71,13 @@ export interface CartItem {
   quantity: number;
 }
 
+export type OrderStatus = 'Processing' | 'Dispatched' | 'Completed' | 'Cancelled' | 'Return Requested' | 'Returned';
+
 export interface Order {
   id: string;
   date: string;
   items: {
+    productId?: string;
     name: string;
     price: number;
     quantity: number;
@@ -81,9 +85,11 @@ export interface Order {
     type: 'physical' | 'digital';
   }[];
   total: number;
-  status: 'Dispatched' | 'Completed' | 'Processing';
+  status: OrderStatus;
   trackingNumber?: string;
   ironPointsEarned: number;
+  cancellationDate?: string;
+  returnDate?: string;
 }
 
 export interface UserAccount {

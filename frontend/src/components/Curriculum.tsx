@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { BookOpen, Star, Dumbbell, Award, Download, CheckCircle, Flame } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import ImageWithFallback from './ImageWithFallback';
 import { useId } from 'react';
 
 export default function Curriculum() {
@@ -88,12 +90,12 @@ export default function Curriculum() {
                 >
                   
                   {/* Aspect Header Image */}
-                  <div className="relative h-48 w-full bg-neutral-900 overflow-hidden">
-                    <img 
-                      src={prog.image} 
+                  <Link to={`/curriculum/${prog.id}`} className="relative h-48 w-full bg-neutral-900 overflow-hidden block">
+                    <ImageWithFallback
+                      src={prog.image}
                       alt={prog.name}
-                      loading="lazy"
                       className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
+                      wrapperClassName="absolute inset-0"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
                     
@@ -112,16 +114,18 @@ export default function Curriculum() {
                         <span>AUTHORIZED PASS</span>
                       </div>
                     )}
-                  </div>
+                  </Link>
 
                   {/* Core Body Container */}
                   <div className="p-4 flex-1 flex flex-col justify-between">
                     <div>
                       {/* Name & Duration */}
                       <div className="flex items-start justify-between min-h-[50px]">
-                        <h3 className="font-display font-black text-sm text-white tracking-tight uppercase group-hover:text-neon-orange leading-snug">
-                          {prog.name}
-                        </h3>
+                        <Link to={`/curriculum/${prog.id}`} className="decoration-transparent">
+                          <h3 className="font-display font-black text-sm text-white tracking-tight uppercase group-hover:text-neon-orange leading-snug hover:text-neon-orange transition-colors">
+                            {prog.name}
+                          </h3>
+                        </Link>
                         <span className="font-mono text-[9px] font-bold text-zinc-400 bg-neutral-900 px-2 py-0.5 mt-0.5 uppercase border border-neutral-800 whitespace-nowrap">
                           {prog.duration}
                         </span>
@@ -131,6 +135,17 @@ export default function Curriculum() {
                       <p className="mt-2 font-sans font-light text-xs text-zinc-400 leading-relaxed min-h-[60px]">
                         {prog.description}
                       </p>
+
+                      {/* Link to details */}
+                      <div className="mt-2 mb-1">
+                        <Link 
+                          to={`/curriculum/${prog.id}`}
+                          className="inline-flex items-center space-x-1 font-mono text-[8px] font-black text-neon-orange hover:underline uppercase tracking-wider"
+                        >
+                          <span>INSPECT TACTICAL BLUEPRINT</span>
+                          <span className="text-[10px]">↳</span>
+                        </Link>
+                      </div>
 
                       {/* Sneak peek Syllabus points (high info density) */}
                       <div className="mt-4 bg-[#050505]/95 border border-[#222] p-3">

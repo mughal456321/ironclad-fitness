@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, Trash2, ShieldCheck, CreditCard, ChevronRight, CheckCircle2, ChevronLeft, Plus, Minus, ArrowRight } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { PRODUCTS, DIGITAL_PROGRAMS } from '../data';
+import ImageWithFallback from './ImageWithFallback';
 
 export default function MiniCart() {
   const { 
@@ -177,10 +178,11 @@ export default function MiniCart() {
                               className="bg-neutral-950 p-3 border border-neutral-900 flex justify-between items-start gap-3"
                             >
                               <div className="flex items-center space-x-3">
-                                <img 
-                                  src={image} 
-                                  alt={name} 
-                                  className="h-12 w-12 object-cover border border-neutral-800"
+                                <ImageWithFallback
+                                  src={image}
+                                  alt={name}
+                                  className="h-12 w-12 object-cover"
+                                  wrapperClassName="h-12 w-12 shrink-0 border border-neutral-800"
                                 />
                                 <div className="text-left font-mono">
                                   <span className="block text-[10px] text-white font-extrabold uppercase leading-tight max-w-[200px] truncate">
@@ -257,10 +259,11 @@ export default function MiniCart() {
                                 className="bg-neutral-950 p-2.5 border border-dashed border-neutral-900 text-left flex flex-col justify-between"
                               >
                                 <div>
-                                  <img 
-                                    src={up.image} 
-                                    alt={up.name} 
-                                    className="h-16 w-full object-cover mb-2 border border-neutral-900"
+                                  <ImageWithFallback
+                                    src={up.image}
+                                    alt={up.name}
+                                    className="h-16 w-full object-cover"
+                                    wrapperClassName="h-16 w-full mb-2 border border-neutral-900"
                                   />
                                   <h4 className="font-mono text-[9px] text-white font-black uppercase truncate">
                                     {up.name}

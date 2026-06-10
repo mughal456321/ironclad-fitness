@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef, ReactNode } from 'react';
 import { Product, DigitalProgram, CartItem, UserAccount, Order } from '../types';
 
 interface ToastData {
@@ -39,6 +39,8 @@ interface AppContextType {
   setCheckoutStep: (step: 'idle' | 'billing' | 'review' | 'confirmed') => void;
   placeOrder: (shippingDetails: { name: string; street: string; city: string; zip: string; cardNum: string }) => void;
   claimDigitalBlueprint: (programId: string) => void;
+  cancelOrder: (orderId: string) => void;
+  returnOrder: (orderId: string) => void;
   updateUserProfile: (name: string, email: string) => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
@@ -74,16 +76,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [isJoinModalOpen, setJoinModalOpen] = useState<boolean>(false);
   const [checkoutStep, setCheckoutStep] = useState<'idle' | 'billing' | 'review' | 'confirmed'>('idle');
   const [toast, setToast] = useState<ToastData | null>(null);
-  let toastTimer: ReturnType<typeof setTimeout> | null = null;
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const showToast = (message: string, type: ToastData['type'], duration = 3000) => {
-    if (toastTimer) clearTimeout(toastTimer);
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
     setToast({ message, type });
-    toastTimer = setTimeout(() => setToast(null), duration);
+    toastTimerRef.current = setTimeout(() => setToast(null), duration);
   };
 
   const clearToast = () => {
-    if (toastTimer) clearTimeout(toastTimer);
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
     setToast(null);
   };
 
@@ -217,6 +219,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const orderItems = cart.map(item => {
       if (item.product) {
         return {
+          productId: item.product.id,
           name: item.product.name + (item.selectedSize ? ` (${item.selectedSize})` : '') + (item.selectedWeight ? ` - ${item.selectedWeight}` : ''),
           price: item.product.price,
           quantity: item.quantity,
@@ -342,6 +345,36 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const cancelOrder = (orderId: string) => {
+    setUser(prev => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        orders: prev.orders.map(o =>
+          o.id === orderId
+            ? { ...o, status: 'Cancelled' as const, cancellationDate: new Date().toISOString().split('T')[0] }
+            : o
+        )
+      };
+    });
+    showToast(`Order ${orderId} has been cancelled.`, 'success');
+  };
+
+  const returnOrder = (orderId: string) => {
+    setUser(prev => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        orders: prev.orders.map(o =>
+          o.id === orderId
+            ? { ...o, status: 'Returned' as const, returnDate: new Date().toISOString().split('T')[0], ironPointsEarned: 0 }
+            : o
+        )
+      };
+    });
+    showToast(`Return initiated for order ${orderId}.`, 'success');
+  };
+
   // ==================== AUTH METHODS ====================
 
   const login = async (email: string, password: string) => {
@@ -458,6 +491,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setCheckoutStep,
       placeOrder,
       claimDigitalBlueprint,
+      cancelOrder,
+      returnOrder,
       updateUserProfile,
       login,
       register,

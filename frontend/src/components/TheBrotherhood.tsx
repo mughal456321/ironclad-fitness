@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { ShieldCheck, Flame, Star, ShoppingCart, MessageSquare } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { TRANSFORMATIONS } from '../data';
+import ImageWithFallback from './ImageWithFallback';
 
 export default function TheBrotherhood() {
   const { products, programs, addToCart } = useApp();
@@ -96,11 +97,11 @@ export default function TheBrotherhood() {
                     
                     {/* Before Image */}
                     <div className="relative aspect-[3/4] bg-neutral-900 border border-neutral-800 overflow-hidden">
-                      <img 
-                        src={story.imageBefore} 
-                        alt="Before" 
-                        loading="lazy"
+                      <ImageWithFallback
+                        src={story.imageBefore}
+                        alt="Before"
                         className="w-full h-full object-cover brightness-90"
+                        wrapperClassName="absolute inset-0"
                       />
                       <div className="absolute inset-0 bg-black/20" />
                       
@@ -111,11 +112,11 @@ export default function TheBrotherhood() {
 
                     {/* After Image */}
                     <div className="relative aspect-[3/4] bg-neutral-900 border border-neon-orange/40 overflow-hidden">
-                      <img 
-                        src={story.imageAfter} 
-                        alt="After" 
-                        loading="lazy"
+                      <ImageWithFallback
+                        src={story.imageAfter}
+                        alt="After"
                         className="w-full h-full object-cover contrast-110"
+                        wrapperClassName="absolute inset-0"
                       />
                       <div className="absolute inset-0 border-2 border-neon-orange/20" />
 
@@ -173,10 +174,11 @@ export default function TheBrotherhood() {
                           className="flex items-center justify-between bg-black/70 p-2 border border-[#222] text-left font-mono leading-tight will-change-transform"
                         >
                           <div className="flex items-center space-x-2">
-                            <img 
-                              src={finalImage} 
-                              alt={finalName} 
+                            <ImageWithFallback
+                              src={finalImage}
+                              alt={finalName}
                               className="h-8 w-8 object-cover"
+                              wrapperClassName="h-8 w-8 shrink-0"
                             />
                             <div>
                               <span className="block text-[9px] text-zinc-300 font-extrabold max-w-[150px] truncate uppercase">
@@ -230,10 +232,11 @@ export default function TheBrotherhood() {
                   whileHover={{ borderColor: '#FF5500' }}
                   className="group relative aspect-square bg-[#0c0c0c] border border-[#222] overflow-hidden cursor-pointer will-change-transform"
                 >
-                  <img 
-                    src={post.image} 
+                  <ImageWithFallback
+                    src={post.image}
                     alt="Social feed"
                     className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105 will-change-transform"
+                    wrapperClassName="absolute inset-0"
                   />
                   
                   <div className="absolute inset-0 bg-black/15 transition-opacity duration-200 ease-out group-hover:bg-black/40" />

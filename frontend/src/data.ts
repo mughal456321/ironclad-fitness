@@ -1,6 +1,5 @@
 import { Product, DigitalProgram, Athlete, TransformationStory } from './types';
 
-// High-End Premium Hardcore products
 export const PRODUCTS: Product[] = [
   {
     id: 'h1',
@@ -24,7 +23,8 @@ export const PRODUCTS: Product[] = [
       'Dual knurl marks for powerlifting/weightlifting',
       'Ultra-grippy 1.2mm diamond texture',
       'Engineered in Detroit'
-    ]
+    ],
+    isOriginal: true
   },
   {
     id: 'h2',
@@ -47,7 +47,8 @@ export const PRODUCTS: Product[] = [
       'Double stitched reinforced industrial straps',
       'Integrated military MOLLE storage loop system',
       'Sweat venting airmesh internal pads'
-    ]
+    ],
+    isOriginal: true
   },
   {
     id: 'h3',
@@ -69,7 +70,8 @@ export const PRODUCTS: Product[] = [
       'Gravity-molded single-cast core',
       'Volcanic powder grip texture integration',
       'Flat floor anti-wobble security base'
-    ]
+    ],
+    isOriginal: true
   },
   {
     id: 'a1',
@@ -91,7 +93,8 @@ export const PRODUCTS: Product[] = [
       '60% Knurling-Defiant elastomeric nylon',
       'Aero-vent thermal compression matrices',
       'Industrial flatlock raw seam stitching'
-    ]
+    ],
+    isOriginal: true
   },
   {
     id: 'a2',
@@ -113,7 +116,8 @@ export const PRODUCTS: Product[] = [
       'Integrated hip-chalk capture panels',
       'Ripstop military fiber gusseted groin',
       'Double braided interior security laces'
-    ]
+    ],
+    isOriginal: true
   },
   {
     id: 'a3',
@@ -135,7 +139,8 @@ export const PRODUCTS: Product[] = [
       '520 GSM Double-Weave dense cotton core',
       'Abrasion-resistant shoulder plates',
       'Hidden key/card water-sealed pocket'
-    ]
+    ],
+    isOriginal: true
   },
   {
     id: 's1',
@@ -156,7 +161,8 @@ export const PRODUCTS: Product[] = [
       '400mg Multi-Stage Kinetic Caffeine release',
       'Zero sugars, zero synthetic dyes, zero fillers',
       'Obsidian-Sour Lime performance formulation'
-    ]
+    ],
+    isOriginal: true
   },
   {
     id: 's2',
@@ -178,11 +184,1150 @@ export const PRODUCTS: Product[] = [
       '6.2g bioavailable BCAAs for cellular recovery',
       'No recovery-bloating lactose residues',
       '100% Raw Cocoa Dutch Powder rich flavor'
+    ],
+    isOriginal: true
+  },
+  {
+    id: 'h4',
+    name: 'FORGED DUAL DUMBBELL SET (5-50LB)',
+    price: 449,
+    type: 'Hardware',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1638536532686-d610adfc8e5c?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8,
+    ratingCount: 203,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 15,
+    description: 'Full range rubber-hex dumbbell set with industrial-grade chrome handles. Knurled gripping surface ensures zero slippage during heavy pressing movements and isolation work.',
+    weights: ['5-25 lb Set', '25-50 lb Set', 'Full 5-50 lb Set'],
+    features: [
+      'Cast iron core with rubber encasing',
+      'Chrome-plated ergonomic handles',
+      'Flat-sided anti-roll design',
+      'Weight increment markings laser-etched'
+    ]
+  },
+  {
+    id: 'h5',
+    name: 'TITAN OLYMPIC BUMPER PLATE PAIR (45LB)',
+    price: 219,
+    originalPrice: 249,
+    type: 'Hardware',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    ratingCount: 98,
+    isLimitedBatch: true,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 11,
+    description: 'Dead-bounce virgin rubber bumper plates engineered for repeated Olympic drop cycles. Steel hub insert with precision-machined center ring for snug barbell sleeve fit.',
+    weights: ['10 lb Pair', '25 lb Pair', '45 lb Pair'],
+    features: [
+      'Virgin rubber construction zero-scent',
+      'Steel-reinforced impact center hub',
+      'Dead-bounce technology for quiet drops',
+      'Color-coded weight identification bands'
+    ]
+  },
+  {
+    id: 'h6',
+    name: 'IRONCLAD ADJUSTABLE WORKOUT BENCH',
+    price: 299,
+    type: 'Hardware',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1544033527-b192daee1f5b?q=80&w=800&auto=format&fit=crop',
+    rating: 4.6,
+    ratingCount: 76,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 22,
+    description: 'Military-spec heavy-gauge steel framework with multi-angle backrest adjustments. Dense foam padding wrapped in industrial-grade upholstery for extreme durability under heavy loads.',
+    sizes: ['Standard Frame', 'Extended XL'],
+    features: [
+      '8-position backrest adjustment (flat to 85°)',
+      '3-position seat adjustment',
+      '900 lb weight capacity rating',
+      'Oversized 3-inch thick foam padding'
+    ]
+  },
+  {
+    id: 'h7',
+    name: 'HEAVY-DUTY POWER RACK (REINFORCED CAGE)',
+    price: 899,
+    originalPrice: 999,
+    type: 'Hardware',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1434596990095-7fa298e74967?q=80&w=800&auto=format&fit=crop',
+    rating: 4.9,
+    ratingCount: 156,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 7,
+    description: 'Fortress-grade 11-gauge steel power rack with Westside hole spacing. Includes pin-pipe safeties, multi-grip pull-up bar, plate storage pegs, and band pegs for accommodating resistance training.',
+    features: [
+      '11-gauge steel unibody construction',
+      'Westside pattern hole spacing (1-inch increments)',
+      'Multi-grip pull-up bar (neutral/wide/close)',
+      'Color: Obsidian Black powder coat'
+    ]
+  },
+  {
+    id: 'h8',
+    name: 'COMBAT RESISTANCE BAND SET (5-100LB)',
+    price: 49,
+    type: 'Hardware',
+    goal: 'Fat Loss',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop',
+    rating: 4.5,
+    ratingCount: 312,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 200,
+    description: 'Premium natural latex layered resistance bands with reinforced edges. Perfect for accommodating resistance protocols, rehabilitation, and explosive movement training across all planes.',
+    colors: ['Black Heavy', 'Green X-Heavy', 'Blue XX-Heavy', 'Orange XXX-Heavy'],
+    features: [
+      '100% natural latex layered construction',
+      'Snag-free reinforced rolled edges',
+      'Color-coded resistance rating system',
+      'Includes carry pouch and exercise guide'
+    ]
+  },
+  {
+    id: 'h9',
+    name: 'TACTICAL BATTLE ROPE (50FT x 1.5IN)',
+    price: 89,
+    type: 'Hardware',
+    goal: 'Endurance',
+    image: 'https://images.unsplash.com/photo-1605296867424-35fc25c9212a?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    ratingCount: 88,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 34,
+    description: 'Marine-grade poly-dacron battle rope with protective nylon whip-layer. Engineered for high-velocity anaerobic wave training and grip endurance destruction at maximum output.',
+    weights: ['1.5in x 30ft', '1.5in x 50ft', '2in x 50ft'],
+    features: [
+      'Marine-grade poly-dacron blend material',
+      'Nylon whip-layer protective outershell',
+      'Heat-sealed anti-fray rope ends',
+      'Includes anchored strap for secure mounting'
+    ]
+  },
+  {
+    id: 'h10',
+    name: 'SOLID STEEL MEDICINE BALL (20LB)',
+    price: 59,
+    type: 'Hardware',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?q=80&w=800&auto=format&fit=crop',
+    rating: 4.4,
+    ratingCount: 54,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 42,
+    description: 'High-density rubberized medicine ball with textured grip surface. Weighted perfectly for rotational power throws, wall-ball drills, and plyometric core destruction protocols.',
+    weights: ['10 lb', '15 lb', '20 lb', '30 lb'],
+    features: [
+      'High-density rubber compound construction',
+      'Textured grip surface non-slip design',
+      'Consistent bounce response characteristic',
+      'Anti-burst stitched seam reinforcement'
+    ]
+  },
+  {
+    id: 'h11',
+    name: 'SPEED JUMP ROPE (BEARING SYSTEM)',
+    price: 29,
+    type: 'Hardware',
+    goal: 'Endurance',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop',
+    rating: 4.6,
+    ratingCount: 178,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 67,
+    description: 'Precision bearing rotation system for ultra-fast speed skipping. Aircraft-grade aluminum handles with memory-grip rubber coating and tapered weighted steel cable for metabolic conditioning.',
+    colors: ['Carbon Black', 'Neon Orange'],
+    features: [
+      'Dual-bearing rotation system for zero tangle',
+      'Aircraft-grade aluminum alloy handles',
+      'Tapered weighted steel speed cable',
+      'Adjustable length up to 10ft'
+    ]
+  },
+  {
+    id: 'h12',
+    name: 'INDUSTRIAL GYM MAT (4x6ft)',
+    price: 79,
+    type: 'Hardware',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1600881333168-2ef49b341f30?q=80&w=800&auto=format&fit=crop',
+    rating: 4.5,
+    ratingCount: 92,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 55,
+    description: 'Heavy-density 1-inch thick EVA foam mat with reinforced triple-layer top surface. Interlocking edge system allows for seamless expansion across full training floor installations.',
+    sizes: ['3x5ft', '4x6ft', '6x8ft'],
+    colors: ['Obsidian Black', 'Concrete Gray'],
+    features: [
+      '1-inch thick high-density EVA foam',
+      'Reinforced triple-layer wear surface',
+      'Interlocking edge connector system',
+      'Non-slip bottom texture grip layer'
+    ]
+  },
+  {
+    id: 'h13',
+    name: 'OLYMPIC TRAP BAR (SHROUD)',
+    price: 249,
+    originalPrice: 289,
+    type: 'Hardware',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8,
+    ratingCount: 67,
+    isLimitedBatch: true,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 9,
+    description: 'Hexagonal trap bar with elevated handles for reduced lumbar stress during heavy deadlift variations. Knurled high-handle and low-handle grip positions for versatile loading angles.',
+    weights: ['Standard (45 lb)', 'Heavy (65 lb)'],
+    features: [
+      'Hexagonal 25mm steel frame design',
+      'Dual high/low handle grip positions',
+      '2-inch Olympic weight sleeve diameter',
+      'Durable black powder coat finish'
+    ]
+  },
+  {
+    id: 'h14',
+    name: 'LAT PULLDOWN CABLE ATTACHMENT SET',
+    price: 69,
+    type: 'Hardware',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop',
+    rating: 4.4,
+    ratingCount: 45,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 38,
+    description: 'Complete set of 5 cable attachments for total back development. Includes wide-grip lat bar, v-grip bar, straight bar, tricep rope, and ankle strap for comprehensive cable station training.',
+    features: [
+      'Wide-grip lat pulldown bar (48-inch)',
+      'Close-grip v-bar attachment',
+      'Tricep press-down rope (nylon)',
+      'Steel construction with rubberized grips'
+    ]
+  },
+  {
+    id: 'h15',
+    name: 'PARALLEL DIP STATION (WALL-MOUNT)',
+    price: 159,
+    type: 'Hardware',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1598971639058-fab3c3109a00?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    ratingCount: 83,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 12,
+    description: 'Heavy-gauge steel dip bars with reinforced wall-mount bracket system. Ergonomic angled grips reduce wrist strain while supporting weighted dip loads exceeding 600 lbs.',
+    features: [
+      '2-inch diameter steel dip bars',
+      'Reinforced wall-mount plate with 6 bolts',
+      'Ergonomic 15-degree angled parallel grips',
+      '600 lb maximum load capacity'
+    ]
+  },
+  {
+    id: 'h16',
+    name: 'HEAVY DUTY HEAD HARNESS',
+    price: 34,
+    type: 'Hardware',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop',
+    rating: 4.3,
+    ratingCount: 37,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 45,
+    description: 'Padded leather neck training harness for developing cervical spine musculature. Reinforced steel chain attachment loop connects to weight plates for progressive resistance neck training.',
+    features: [
+      'Premium padded leather construction',
+      'Reinforced steel attachment chain loop',
+      'Adjustable fit for all head sizes',
+      'Quick-release safety buckle system'
+    ]
+  },
+  {
+    id: 'h17',
+    name: 'FAT GRIPZ (BAR THICKENER SET)',
+    price: 39,
+    type: 'Hardware',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1638536532686-d610adfc8e5c?q=80&w=800&auto=format&fit=crop',
+    rating: 4.5,
+    ratingCount: 124,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 70,
+    description: 'Injection-molded rubber bar grip thickeners that instantly increase bar diameter to 2 inches. Forces massive forearm, grip and neurological activation during all pulling movements.',
+    colors: ['Black', 'Orange', 'Camo'],
+    features: [
+      'Increases bar diameter to 2 inches',
+      'Injection-molded non-slip rubber compound',
+      'Fits standard and Olympic barbells',
+      'Includes pair with carry case'
+    ]
+  },
+  {
+    id: 'h18',
+    name: 'AB WHEEL (REINFORCED STEEL)',
+    price: 24,
+    type: 'Hardware',
+    goal: 'Fat Loss',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop',
+    rating: 4.4,
+    ratingCount: 201,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 90,
+    description: 'Industrial-grade steel core ab wheel with extra-wide foam grip handles. Silent bearing rotation system delivers smooth rollouts on any surface for deep core recruitment.',
+    features: [
+      'Steel core with reinforced axle assembly',
+      'Extra-wide memory foam grip handles',
+      'Silent precision bearing rotation',
+      'Supports 400+ lbs user weight'
+    ]
+  },
+  {
+    id: 'h19',
+    name: 'EXPLOSIVE PLYOMETRIC BOX (TRIPLE)',
+    price: 149,
+    type: 'Hardware',
+    goal: 'Endurance',
+    image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=800&auto=format&fit=crop',
+    rating: 4.6,
+    ratingCount: 61,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 18,
+    description: 'Three-in-one plyometric jump box with reinforced birch wood construction. Anti-skid rubber surface platform and graduated heights for progressive box jump and step-up protocols.',
+    sizes: ['12/18/24 inch', '20/24/30 inch', '24/30/36 inch'],
+    features: [
+      'Reinforced birch plywood construction',
+      'Anti-skid rubber top surface pad',
+      'Triple-height graduated design',
+      'Stackable storage configuration'
+    ]
+  },
+  {
+    id: 'h20',
+    name: 'PRO WEIGHTLIFTING PLATFORM KIT',
+    price: 399,
+    type: 'Hardware',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8,
+    ratingCount: 42,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: true,
+    stockCount: 6,
+    description: 'Competition-grade 8x8 foot platform with central rubberized drop zone. Premium birch hardwood side runners with regulation markings and rubber deadlift pad insert.',
+    features: [
+      '8x8 foot competition regulation size',
+      'Birch hardwood side runner platforms',
+      '3/4-inch rubber drop zone center section',
+      'Pre-drilled assembly connectors included'
+    ]
+  },
+  {
+    id: 'a4',
+    name: 'TACTICAL COMPRESSION LONG SLEEVE',
+    price: 49,
+    type: 'Apparel',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    ratingCount: 167,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 55,
+    description: 'Second-skin compression top with moisture-wicking micro-fiber fabrication. Flatlock seam construction eliminates chafing during heavy pressing and pulling movements.',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    colors: ['Black Ops', 'White Phosphorus', 'Grey Concrete'],
+    features: [
+      'Moisture-wicking micro-fiber polyester blend',
+      'Flatlock anti-chafe seam construction',
+      'Four-way stretch mobility panels',
+      'UPF 50+ sun protection rating'
+    ]
+  },
+  {
+    id: 'a5',
+    name: 'HEAVYWEIGHT GYM JOGGERS',
+    price: 74,
+    originalPrice: 84,
+    type: 'Apparel',
+    goal: 'Endurance',
+    image: 'https://images.unsplash.com/photo-1517438476312-12d859432746?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8,
+    ratingCount: 231,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 34,
+    description: 'Premium heavyweight fleece joggers with articulated knee panel for unrestricted squat depth. Multiple cargo pockets with waterproof zipper seals for secure gear storage.',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    colors: ['Obsidian Black', 'Tactical Grey'],
+    features: [
+      '320 GSM heavyweight brushed fleece',
+      'Articulated knee panel for full ROM',
+      'Waterproof sealed zipper cargo pockets',
+      'Elastic ankle cuffs with drawcord hem'
+    ]
+  },
+  {
+    id: 'a6',
+    name: 'CARBON FIBER LIFTING BELT (10MM)',
+    price: 109,
+    type: 'Apparel',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1605296867424-35fc25c9212a?q=80&w=800&auto=format&fit=crop',
+    rating: 4.9,
+    ratingCount: 294,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 28,
+    description: 'IPF-approved 10mm powerlifting belt with carbon fiber reinforced nylon. Suede leather outer wrap with single-prong roller buckle for instantaneous tightness adjustments.',
+    sizes: ['S (28-30")', 'M (31-33")', 'L (34-36")', 'XL (37-40")', 'XXL (41-44")'],
+    features: [
+      '10mm thick carbon fiber reinforced nylon',
+      'IPF-approved competition specifications',
+      'Suede leather exterior wrap material',
+      'Single-prong roller buckle system'
+    ]
+  },
+  {
+    id: 'a7',
+    name: 'ELITE WRIST WRAPS (60CM)',
+    price: 39,
+    type: 'Apparel',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    ratingCount: 188,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 72,
+    description: 'Professional-grade wrist wraps with 60cm length for maximum support. Dual-density cotton elastic weave with reinforced thumb loop and extra-wide velcro closure panel.',
+    colors: ['Black', 'White', 'Neon Orange'],
+    features: [
+      '60cm length for competition-level support',
+      'Dual-density cotton/spandex elastic weave',
+      'Reinforced thumb loop attachment',
+      'Extra-wide 3-inch velcro closure strap'
+    ]
+  },
+  {
+    id: 'a8',
+    name: 'PRO ATHLETE GYM BAG (DUFFEL)',
+    price: 89,
+    type: 'Apparel',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop',
+    rating: 4.6,
+    ratingCount: 134,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 41,
+    description: 'Heavy-duty 600D polyester duffel bag with ventilated shoe compartment. Multiple organizational pockets with molle webbing for external accessory attachment and rapid deployment.',
+    colors: ['Black', 'Olive Drab', 'Grey'],
+    features: [
+      '600D high-density polyester shell',
+      'Ventilated shoe compartment (waterproof floor)',
+      'MOLLE webbing external attachment system',
+      'Padded laptop sleeve (15-inch compatible)'
+    ]
+  },
+  {
+    id: 'a9',
+    name: 'COMBAT HEADBAND (MOISTURE WICK)',
+    price: 14,
+    type: 'Apparel',
+    goal: 'Endurance',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop',
+    rating: 4.3,
+    ratingCount: 87,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 120,
+    description: 'Sweat-wicking elastic headband with silicone grip interior lining. Designed to channel moisture away from eyes during maximum intensity metabolic conditioning and heavy lifting sessions.',
+    colors: ['Black', 'White', 'Orange', 'Camo'],
+    features: [
+      'Moisture-wicking performance fabric',
+      'Silicone non-slip grip interior strip',
+      'Extra-wide 2-inch band coverage',
+      'One-size-fits-all stretch construction'
+    ]
+  },
+  {
+    id: 'a10',
+    name: 'LEATHER LIFTING GLOVES (VENTED)',
+    price: 34,
+    type: 'Apparel',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1605296867304-46d5465a25f1?q=80&w=800&auto=format&fit=crop',
+    rating: 4.2,
+    ratingCount: 65,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 48,
+    description: 'Premium goatskin leather palm gloves with mesh vent backing. Reinforced stitching across high-wear zones with integrated wrist wrap support for heavy pulling movements.',
+    sizes: ['S', 'M', 'L', 'XL'],
+    features: [
+      'Goatskin leather palm for superior grip',
+      'Mesh ventilation back panel',
+      'Integrated velcro wrist support wrap',
+      'Reinforced double-stitched stress zones'
+    ]
+  },
+  {
+    id: 'a11',
+    name: 'TACTICAL SLEEVE TATTER TOP',
+    price: 44,
+    type: 'Apparel',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?q=80&w=800&auto=format&fit=crop',
+    rating: 4.5,
+    ratingCount: 112,
+    isLimitedBatch: true,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 18,
+    description: 'Raw-cut sleeve t-shirt with distressed arm openings for unrestricted shoulder movement. Heavy 230 GSM ring-spun cotton construction with reinforced neck seam.',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    colors: ['Black', 'White', 'Military Green'],
+    features: [
+      '230 GSM ring-spun cotton fabric',
+      'Raw-cut sleeve openings for mobility',
+      'Reinforced double-needle neck seam',
+      'Pre-shrunk anti-warp treatment'
+    ]
+  },
+  {
+    id: 'a12',
+    name: 'THERMAL COMPRESSION PANTS',
+    price: 59,
+    type: 'Apparel',
+    goal: 'Fat Loss',
+    image: 'https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?q=80&w=800&auto=format&fit=crop',
+    rating: 4.6,
+    ratingCount: 145,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 39,
+    description: 'Thermal-regulating compression tights with graduated muscle support panels. Sauna-effect fabric increases core temperature to amplify metabolic output during training cycles.',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    colors: ['Black', 'Navy', 'Charcoal'],
+    features: [
+      'Thermal-regulating sauna-effect fabric',
+      'Graduated compression muscle support',
+      'Flatlock anti-chafe seam construction',
+      'Moisture-wicking quick-dry technology'
+    ]
+  },
+  {
+    id: 'a13',
+    name: 'HEAVY DUTY KNEE SLEEVES (7MM)',
+    price: 59,
+    type: 'Apparel',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8,
+    ratingCount: 97,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 33,
+    description: 'Premium 7mm neoprene knee sleeves with reinforced elastic stitching. Provides compression, warmth, and proprioceptive feedback for heavy squatting and leg press protocols.',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    features: [
+      '7mm thick neoprene construction',
+      'Reinforced elastic stitch binding',
+      'Thermal compression joint support',
+      'Non-slip silicone grip top band'
+    ]
+  },
+  {
+    id: 'a14',
+    name: 'IRONCLAD GYM TANK (STRINGER)',
+    price: 34,
+    type: 'Apparel',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    ratingCount: 256,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 62,
+    description: 'Classic stringer tank cut with deep arm holes for maximum shoulder ventilation. Ultra-soft 180 GSM combed cotton blend with IRONCLAD screen-printed chest graphic.',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    colors: ['Black', 'White', 'Orange', 'Grey'],
+    features: [
+      '180 GSM combed cotton-poly blend',
+      'Deep-cut stringer armhole design',
+      'IRONCLAD screen print chest graphic',
+      'Tagless neck for irritation-free wear'
+    ]
+  },
+  {
+    id: 'a15',
+    name: 'CARGO TRAINING SHORTS (9IN INSEAM)',
+    price: 54,
+    type: 'Apparel',
+    goal: 'Fat Loss',
+    image: 'https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?q=80&w=800&auto=format&fit=crop',
+    rating: 4.5,
+    ratingCount: 91,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 44,
+    description: 'Durable cargo training shorts with 9-inch inseam for full coverage. Multi-pocket storage system with hidden zipper compartment for secure phone and key storage.',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    colors: ['Black', 'Olive', 'Khaki'],
+    features: [
+      '9-inch inseam for full movement coverage',
+      'Hidden zipper security pocket',
+      'Reinforced cargo pockets with velcro flap',
+      'Stretch-flex waistband with internal drawcord'
+    ]
+  },
+  {
+    id: 'a16',
+    name: 'MILITARY-GRADE BEANIE',
+    price: 24,
+    type: 'Apparel',
+    goal: 'Endurance',
+    image: 'https://images.unsplash.com/photo-1576243345690-4e4b79b63288?q=80&w=800&auto=format&fit=crop',
+    rating: 4.4,
+    ratingCount: 64,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 85,
+    description: 'Extra-length tactical beanie with fleece thermal lining. Double-layer knit construction for winter outdoor training sessions and cold-weather running protocols.',
+    colors: ['Black', 'Grey', 'Olive Drab'],
+    features: [
+      'Double-layer thermal knit construction',
+      'Fleece interior thermal lining',
+      'Extra-length fold-over cuff design',
+      'One-size-fits-all stretch fit'
+    ]
+  },
+  {
+    id: 'a17',
+    name: 'ELBOW COMPRESSION SLEEVES (PAIR)',
+    price: 29,
+    type: 'Apparel',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?q=80&w=800&auto=format&fit=crop',
+    rating: 4.3,
+    ratingCount: 76,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 56,
+    description: 'Graduated compression elbow sleeves with silicone anti-slip bands. Provides joint warmth and proprioceptive feedback during pressing and overhead lifting movements.',
+    sizes: ['S', 'M', 'L', 'XL'],
+    features: [
+      'Graduated compression fabric technology',
+      'Silicone anti-slip top/bottom bands',
+      'Breathable moisture-wicking material',
+      'UPF 50+ sun protection rating'
+    ]
+  },
+  {
+    id: 'a18',
+    name: 'WEIGHTLIFTING SOCKS (CALF HIGH)',
+    price: 19,
+    type: 'Apparel',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?q=80&w=800&auto=format&fit=crop',
+    rating: 4.5,
+    ratingCount: 133,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 100,
+    description: 'Calf-length athletic socks with reinforced heel and toe zones. Cushioned footbed with arch compression support for heavy squatting and deadlift footwear fit.',
+    sizes: ['S (4-7)', 'M (7-10)', 'L (10-13)', 'XL (13-15)'],
+    colors: ['Black', 'White', 'Orange Accent'],
+    features: [
+      'Calf-length 12-inch shaft height',
+      'Reinforced heel and toe durability panels',
+      'Arch compression support band',
+      'Cushioned footbed impact absorption'
+    ]
+  },
+  {
+    id: 'a19',
+    name: 'RASH GUARD (SHORT SLEEVE)',
+    price: 44,
+    originalPrice: 54,
+    type: 'Apparel',
+    goal: 'Fat Loss',
+    image: 'https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?q=80&w=800&auto=format&fit=crop',
+    rating: 4.6,
+    ratingCount: 88,
+    isLimitedBatch: true,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 16,
+    description: 'Compression-fit rash guard with anti-microbial fabric treatment. Flatlock seams prevent irritation during high-repetition movements while promoting sweat evaporation.',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    colors: ['Black', 'White', 'Navy', 'Orange'],
+    features: [
+      'Anti-microbial fabric treatment',
+      'Compression-fit performance cut',
+      'Four-way stretch mobility construction',
+      'Quick-dry sweat evaporation technology'
+    ]
+  },
+  {
+    id: 'a20',
+    name: 'IRONCLAD TRUCKER CAP',
+    price: 32,
+    type: 'Apparel',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800&auto=format&fit=crop',
+    rating: 4.4,
+    ratingCount: 59,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 74,
+    description: 'Premium structured trucker cap with IRONCLAD embroidered front panel. Breathable mesh back with snapback adjustable closure for one-size-fits-all fit.',
+    colors: ['Black/White Mesh', 'Orange/Black Mesh', 'Olive/Black Mesh'],
+    features: [
+      'Structured high-profile front panel',
+      'IRONCLAD embroidered logo thread',
+      'Breathable mesh rear ventilation',
+      'Snapback adjustable closure system'
+    ]
+  },
+  {
+    id: 's3',
+    name: 'PURE CREATINE MONOHYDRATE (500G)',
+    price: 44,
+    type: 'Supplements',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8,
+    ratingCount: 523,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 200,
+    description: 'German-sourced 100% pure creatine monohydrate micronized powder. No fillers, no binders, just raw ATP-recharging power for explosive strength and cell volumization.',
+    weights: ['300g (60 servings)', '500g (100 servings)', '1000g (200 servings)'],
+    features: [
+      'German-sourced pharmaceutical grade creatine',
+      'Micronized particles for instant mixing',
+      'Zero calories, zero sugars, zero additives',
+      'ATP regeneration for explosive output'
+    ]
+  },
+  {
+    id: 's4',
+    name: 'COMPLETE BCAA 8:1:1 (400 CAPS)',
+    price: 54,
+    type: 'Supplements',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    ratingCount: 312,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 150,
+    description: 'Ultra-high dosage BCAA complex with 8:1:1 leucine ratio for maximal muscle protein synthesis activation. Rapid-release capsule format for pre/intra/post training windows.',
+    features: [
+      '8g L-Leucine per serving ratio',
+      'Enzyme-infused for rapid absorption',
+      'Zero sugar, zero artificial dyes',
+      '400 count supply for extended use'
+    ]
+  },
+  {
+    id: 's5',
+    name: 'PROTEIN COLLAGINIZED BAR (12-PACK)',
+    price: 39,
+    type: 'Supplements',
+    goal: 'Fat Loss',
+    image: 'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?q=80&w=800&auto=format&fit=crop',
+    rating: 4.5,
+    ratingCount: 278,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 300,
+    description: 'High-protein nutritional bar fortified with hydrolyzed collagen peptides. 20g protein per bar with layered chocolate coating and crunchy textured soy crisp matrix.',
+    features: [
+      '20g protein with added collagen peptides',
+      '10g fiber for satiety and digestion',
+      'Only 2g sugar per bar',
+      'Chocolate layered coating exterior'
+    ]
+  },
+  {
+    id: 's6',
+    name: 'L-GLUTAMINE REPAIR (500G)',
+    price: 36,
+    type: 'Supplements',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?q=80&w=800&auto=format&fit=crop',
+    rating: 4.6,
+    ratingCount: 167,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 180,
+    description: 'Pure L-Glutamine powder for post-workout recovery acceleration and immune system support. Enhances glycogen reload and reduces muscle catabolism during intense training blocks.',
+    weights: ['250g', '500g', '1000g'],
+    features: [
+      '100% pure L-Glutamine crystalline powder',
+      'Post-workout muscle recovery catalyst',
+      'Immune system GI tract support',
+      'Unflavored — mixes with any beverage'
+    ]
+  },
+  {
+    id: 's7',
+    name: 'CASEIN MICRO-PROTEIN (2LB)',
+    price: 64,
+    type: 'Supplements',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8,
+    ratingCount: 201,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 90,
+    description: 'Micellar casein protein isolate with slow-release amino acid profile. Ideal for night-time recovery dosing to maintain positive nitrogen balance throughout sleep cycles.',
+    weights: ['2 lb (900g)', '4 lb (1.8kg)'],
+    features: [
+      'Micellar casein cross-flow isolate',
+      'Slow-release amino acid time profile',
+      '28g protein per serving',
+      'Vanilla custard natural flavor'
+    ]
+  },
+  {
+    id: 's8',
+    name: 'NITRIC OXIDE BOOSTER (PUMP COMPLEX)',
+    price: 49,
+    type: 'Supplements',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    ratingCount: 143,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 110,
+    description: 'Maximum vasodilatory nitric oxide complex with L-Citrulline, Agmatine, and Nitrosigine. Delivers extreme vascular pumps and enhanced nutrient delivery to working muscle tissue.',
+    features: [
+      '6g L-Citrulline DL-Malate 2:1',
+      '750mg Agmatine Sulfate',
+      '1.5g Nitrosigine patented complex',
+      'Electrolyte hydration matrix included'
+    ]
+  },
+  {
+    id: 's9',
+    name: 'MASS GAINER (ELITE WEIGHT FORMULA)',
+    price: 74,
+    type: 'Supplements',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=800&auto=format&fit=crop',
+    rating: 4.6,
+    ratingCount: 189,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 65,
+    description: 'Ultra-dense mass gainer delivering 1250 calories per shake with 50g protein. Complex carbohydrate blend with MCT oil matrix for sustained energy release and weight gain acceleration.',
+    weights: ['6 lb (2.7kg)', '12 lb (5.4kg)'],
+    features: [
+      '1250 calories per serving',
+      '50g triple-source protein blend',
+      '250g complex carb energy matrix',
+      'Digestive enzyme fortified blend'
+    ]
+  },
+  {
+    id: 's10',
+    name: 'THERMOGENIC FAT BURNER (60 CAPS)',
+    price: 44,
+    type: 'Supplements',
+    goal: 'Fat Loss',
+    image: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=800&auto=format&fit=crop',
+    rating: 4.4,
+    ratingCount: 234,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 175,
+    description: 'Advanced thermogenic complex with EGCG, Capsimax, and Synephrine. Increases core metabolic temperature and fatty acid oxidation rates during training and resting states.',
+    features: [
+      'Capsimax cayenne pepper thermogenic',
+      'EGCG green tea standardized extract',
+      'Synephrine HCl metabolic accelerator',
+      'Raspberry ketone fat mobilization complex'
+    ]
+  },
+  {
+    id: 's11',
+    name: 'ZMA RECOVERY COMPLEX (90 CAPS)',
+    price: 32,
+    type: 'Supplements',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    ratingCount: 156,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 140,
+    description: 'Synergistic zinc-magnesium-vitamin B6 complex for enhanced sleep quality and natural testosterone production. Chelated mineral forms for superior absorption and bioavailability.',
+    features: [
+      '30mg Zinc Monomethionine (OptiZinc)',
+      '450mg Magnesium Glycinate chelate',
+      '10mg Vitamin B6 (Pyridoxal 5-Phosphate)',
+      'Enhanced melatonin regulation support'
+    ]
+  },
+  {
+    id: 's12',
+    name: 'JOINT SHIELD COLLAGEN (120 CAPS)',
+    price: 38,
+    type: 'Supplements',
+    goal: 'Endurance',
+    image: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=800&auto=format&fit=crop',
+    rating: 4.5,
+    ratingCount: 98,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 130,
+    description: 'Comprehensive joint support formula with Type II collagen, glucosamine, MSM, and hyaluronic acid. Protects connective tissue integrity under heavy training loads.',
+    features: [
+      '1500mg Type II Collagen (UC-II)',
+      '1500mg Glucosamine HCl',
+      '1000mg MSM (Methylsulfonylmethane)',
+      '100mg Hyaluronic Acid joint lubricant'
+    ]
+  },
+  {
+    id: 's13',
+    name: 'VITAMIN D3 + K2 (5000IU)',
+    price: 24,
+    type: 'Supplements',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8,
+    ratingCount: 345,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 250,
+    description: 'High-potency vitamin D3 with K2 (MK-7) for optimized calcium utilization and bone density support. Essential vitamin for hormone production and immune system function.',
+    features: [
+      '5000 IU Vitamin D3 (Cholecalciferol)',
+      '180mcg Vitamin K2 (MK-7 MenaQ7)',
+      'Coconut oil base for enhanced absorption',
+      '90 softgels per bottle (90 day supply)'
+    ]
+  },
+  {
+    id: 's14',
+    name: 'OMEGA-3 FISH OIL (TRIPLE STRENGTH)',
+    price: 34,
+    type: 'Supplements',
+    goal: 'Fat Loss',
+    image: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    ratingCount: 289,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 195,
+    description: 'Molecularly distilled pharmaceutical-grade fish oil with 3x concentrated omega-3 fatty acids. Supports joint health, cognitive function, and metabolic rate optimization.',
+    features: [
+      '2100mg total Omega-3 fatty acids',
+      '1400mg EPA / 480mg DHA content',
+      'Molecular distillation purity process',
+      'Enteric-coated for zero fish burp'
+    ]
+  },
+  {
+    id: 's15',
+    name: 'ELECTROLYTE HYDRATION COMPLEX (90 SERV)',
+    price: 29,
+    type: 'Supplements',
+    goal: 'Endurance',
+    image: 'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?q=80&w=800&auto=format&fit=crop',
+    rating: 4.6,
+    ratingCount: 178,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 220,
+    description: 'Full-spectrum electrolyte replacement with sodium, potassium, magnesium, and calcium. Rapid hydration formulation for intra-workout consumption during heavy training sessions.',
+    features: [
+      'Zero sugar electrolyte blend',
+      'Sodium/potassium/magnesium/calcium matrix',
+      'Coconut water powder natural base',
+      'Dissolves instantly in 16oz water'
+    ]
+  },
+  {
+    id: 's16',
+    name: 'HYDROLYZED COLLAGEN PEPTIDES (1LB)',
+    price: 42,
+    type: 'Supplements',
+    goal: 'Endurance',
+    image: 'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?q=80&w=800&auto=format&fit=crop',
+    rating: 4.5,
+    ratingCount: 134,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 160,
+    description: 'Type I & III hydrolyzed collagen peptides for skin, joint, bone, and tendon health restoration. Low molecular weight for rapid absorption and tissue integration.',
+    weights: ['1 lb (454g)', '2 lb (907g)'],
+    features: [
+      'Type I & III bovine hide collagen',
+      'Hydrolyzed for maximum bioavailability',
+      '10g protein per scoop serving',
+      'Unflavored — dissolves in hot or cold'
+    ]
+  },
+  {
+    id: 's17',
+    name: 'SUPER GREENS ALKALIZER (120 CAPS)',
+    price: 38,
+    type: 'Supplements',
+    goal: 'Fat Loss',
+    image: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=800&auto=format&fit=crop',
+    rating: 4.4,
+    ratingCount: 87,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 95,
+    description: 'Organic super greens complex with spirulina, chlorella, wheatgrass, and barley grass. Alkalizing pH balancer with digestive enzymes for nutrient assimilation enhancement.',
+    features: [
+      'Organic spirulina and chlorella base',
+      'Wheatgrass and barley grass powders',
+      'Digestive enzyme blend (amylase, protease)',
+      'Alkalizing pH balancing mineral complex'
+    ]
+  },
+  {
+    id: 's18',
+    name: 'SLEEP RECOVERY MELATONIN (60 CAPS)',
+    price: 22,
+    type: 'Supplements',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=800&auto=format&fit=crop',
+    rating: 4.6,
+    ratingCount: 212,
+    isLimitedBatch: false,
+    isAthleteApproved: false,
+    isLimitedEdition: false,
+    stockCount: 300,
+    description: 'Sleep recovery complex with timed-release melatonin, L-Theanine, and 5-HTP. Accelerates sleep onset and enhances deep REM cycles for maximal growth hormone secretion.',
+    features: [
+      '5mg timed-release melatonin',
+      '200mg L-Theanine for relaxation',
+      '50mg 5-HTP serotonin precursor',
+      'Valerian root extract calming support'
+    ]
+  },
+  {
+    id: 's19',
+    name: 'BETA-ALANINE (240 CAPS)',
+    price: 28,
+    type: 'Supplements',
+    goal: 'Endurance',
+    image: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    ratingCount: 167,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 185,
+    description: 'Pure beta-alanine powder in capsule form to delay muscular fatigue onset. Buffers hydrogen ion accumulation allowing for longer high-intensity performance output.',
+    features: [
+      '100% pure beta-alanine (CarnoSyn)',
+      'Delayed muscle fatigue threshold',
+      'Increased carnosine muscle levels',
+      '3.2g daily dose (4 capsules)'
+    ]
+  },
+  {
+    id: 's20',
+    name: 'COMPLETE MULTIVITAMIN (ATHLETE FORMULA)',
+    price: 48,
+    type: 'Supplements',
+    goal: 'Muscle Gain',
+    image: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8,
+    ratingCount: 398,
+    isLimitedBatch: false,
+    isAthleteApproved: true,
+    isLimitedEdition: false,
+    stockCount: 210,
+    description: 'Complete athlete-grade multivitamin with 25+ essential vitamins and minerals. High-potency B-complex, antioxidant network, and trace mineral blend for comprehensive nutritional insurance.',
+    features: [
+      '25+ essential vitamins and minerals',
+      'High-potency activated B-complex',
+      'Chelated trace mineral complex',
+      'Antioxidant network (A, C, E, selenium)'
     ]
   }
 ];
 
-// Digital downloadable blueprints
 export const DIGITAL_PROGRAMS: DigitalProgram[] = [
   {
     id: 'p1',
@@ -237,7 +1382,6 @@ export const DIGITAL_PROGRAMS: DigitalProgram[] = [
   }
 ];
 
-// Elite Athlete/Coach endorsers
 export const ATHLETES: Athlete[] = [
   {
     id: 'ath1',
@@ -268,7 +1412,6 @@ export const ATHLETES: Athlete[] = [
   }
 ];
 
-// Member Transformations & Reviews (Social Proof / The Brotherhood)
 export const TRANSFORMATIONS: TransformationStory[] = [
   {
     id: 't1',
@@ -279,7 +1422,7 @@ export const TRANSFORMATIONS: TransformationStory[] = [
     beforeWeight: '172 lbs',
     afterWeight: '186 lbs',
     timeframe: '12 Weeks',
-    imageBefore: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=400&auto=format&fit=crop', // conceptual rep
+    imageBefore: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=400&auto=format&fit=crop',
     imageAfter: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=400&auto=format&fit=crop',
     pinnedProductIds: ['h1', 'p1', 's2'],
     isVerifiedBuyer: true
